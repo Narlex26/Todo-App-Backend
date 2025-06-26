@@ -5,7 +5,7 @@ const Op = db.Sequelize.Op;
 // Créer et sauvegarder un nouvel utilisateur
 exports.create = (req, res) => {
   // Valider la requête
-  if (!req.body.nom || !req.body.prenom || !req.body.email) {
+  if (!req.body.lastName || !req.body.firstName || !req.body.email) {
     res.status(400).send({
       message: "Le nom, prénom et email sont obligatoires!"
     });
@@ -14,8 +14,8 @@ exports.create = (req, res) => {
 
   // Créer un utilisateur
   const user = {
-    nom: req.body.nom,
-    prenom: req.body.prenom,
+    name: req.body.name,
+    firstName: req.body.firstName,
     email: req.body.email
   };
 
