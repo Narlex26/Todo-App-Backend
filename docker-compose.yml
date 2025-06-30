@@ -15,6 +15,8 @@ services:
       DB_USER: root
       DB_PASSWORD: root
       DB_NAME: todo_app_db
+    networks:
+    - app_network
   db:
     image: mysql:8.0
     container_name: mysql
@@ -25,10 +27,15 @@ services:
       MYSQL_DATABASE: todo_app_db 
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - app_network
 
 
 volumes:
   db_data:
 
-
+networks:
+  app_network:
+    driver: bridge
+    external: true
  
