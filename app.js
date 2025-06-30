@@ -21,7 +21,7 @@ const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = process.env.ALLOWED_ORIGINS
       ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
-      : ['http://localhost:4200', 'http://localhost:4201', 'http://127.0.0.1:4200']; // Mis à jour pour Angular
+      : ['http://localhost:4200', 'http://127.0.0.1:4200'];
 
     // Permettre les requêtes sans origine en développement
     if (process.env.NODE_ENV === 'development' && !origin) {
