@@ -5,6 +5,7 @@ const cors = require('cors');
 const logger = require('morgan');
 const createError = require('http-errors');
 require('dotenv').config();
+const logsRouter = require('./routes/logs');
 
 // Routers
 const indexRouter = require('./routes/index');
@@ -22,17 +23,7 @@ app.use(express.urlencoded({ extended: false }));
 // Routes API
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-
-//Route temporaire pour recevoir les logs du frontend.
-app.post('/api/logs', (req, res) => {
-  const { level, message, data, error, timestamp } = req.body;
-
-  console.log(`[${timestamp}] [${level.toUpperCase()}] ${message}`);
-  if (data) console.log('DATA:', data);
-  if (error) console.error('ERROR:', error);
-
-  res.status(200).json({ success: true });
-});
+app.use('/api/logs', logsRouter);
 
 // Initialisation de la base de données
 const db = require('./models');
