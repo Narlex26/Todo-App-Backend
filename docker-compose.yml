@@ -27,6 +27,7 @@ services:
       MYSQL_DATABASE: todo_app_db 
     volumes:
       - db_data:/var/lib/mysql
+    restart: always
     networks:
       - app_network
 
