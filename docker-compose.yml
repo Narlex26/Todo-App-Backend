@@ -8,6 +8,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+      - ./logs:/app/logs  # ⬅️ Monter les logs en volume pour que Filebeat y ait accès
     depends_on:
       - db
     environment:
@@ -17,14 +18,15 @@ services:
       DB_NAME: todo_app_db
     networks:
     - app_network
+
   db:
     image: mysql:8.0
     container_name: mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: todo_app_db 
+      MYSQL_DATABASE: todo_app_db
     volumes:
       - db_data:/var/lib/mysql
     restart: always
@@ -39,4 +41,3 @@ networks:
   app_network:
     driver: bridge
     external: true
- 
