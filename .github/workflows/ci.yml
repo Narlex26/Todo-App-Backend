@@ -5,7 +5,6 @@ on:
     branches:
       - develop
       - main
-      - CI/CD
       - staging
   pull_request:
     branches:
