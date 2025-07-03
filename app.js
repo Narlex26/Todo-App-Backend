@@ -21,10 +21,10 @@ const corsOptions = {
   origin: function (origin, callback) {
     const allowedOrigins = process.env.ALLOWED_ORIGINS
       ? process.env.ALLOWED_ORIGINS.split(',').map(o => o.trim())
-      : ['http://localhost:4200', 'http://127.0.0.1:4200'];
+      : ['http://212.83.131.87','http://212.83.131.87:80'];
 
     // Permettre les requêtes sans origine en développement
-    if (process.env.NODE_ENV === 'development' && !origin) {
+    if (process.env.NODE_ENV === 'development') {
       return callback(null, true);
     }
 
@@ -79,7 +79,7 @@ app.use((err, req, res, next) => {
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0',() => {
   console.log(`Serveur démarré sur le port ${PORT} 🚀`);
 });
 
