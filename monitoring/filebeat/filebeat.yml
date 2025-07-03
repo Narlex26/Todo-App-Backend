@@ -1,0 +1,25 @@
+filebeat.inputs:
+  - type: filestream
+    id: backend-logs
+    enabled: true
+    paths:
+      - /logs/backend.log
+    fields:
+      log_type: backend
+    fields_under_root: true
+
+  - type: filestream
+    id: frontend-logs
+    enabled: true
+    paths:
+      - /logs/frontend.log
+    fields:
+      log_type: frontend
+    fields_under_root: true
+
+output.logstash:
+  hosts: ["logstash:5044"]
+
+
+setup.kibana:
+  host: "kibana:5601"
