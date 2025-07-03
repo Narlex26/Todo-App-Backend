@@ -5,9 +5,8 @@ on:
     workflows: ["Backend CI Pipeline"]
     types:
       - completed
-
-  push:
     branches:
+      - main
       - staging
 
 jobs:
@@ -22,7 +21,7 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            docker pull ${{ secrets.DOCKER_USERNAME }}/todo-app-backend:${{ github.sha }}
+            docker pull ${{ secrets.DOCKER_USERNAME }}/todo-app-backend:${{ github.event.workflow_run.head_sha }}
             docker stop todo-app-backend || true
             docker rm todo-app-backend || true
-            docker run -d --name todo-app-backend -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/todo-app-backend:${{ github.sha }}
+            docker run -d --name todo-app-backend -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/todo-app-backend:${{ github.event.workflow_run.head_sha }}
