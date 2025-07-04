@@ -3,6 +3,7 @@ services:
   backend:
     build: .
     container_name: express_api
+    image: todo-app-backend:latest
     ports:
       - "3000:3000"
     volumes:
@@ -21,7 +22,7 @@ services:
     image: mysql:8.0
     container_name: mysql
     ports:
-      - "3306:3306"
+      - 3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: todo_app_db 
@@ -39,4 +40,3 @@ networks:
   app_network:
     driver: bridge
     external: true
- 
