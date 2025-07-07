@@ -6,7 +6,6 @@ const verifyApiKey = (req, res, next) => {
   const validApiKey = process.env.API_KEY;
 
   if (!validApiKey) {
-    console.error('API_KEY non configurée dans les variables d\'environnement');
     return next(createError(500, 'Configuration serveur manquante'));
   }
 

@@ -18,6 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: []
     steps:
+      - name: 🔍 Debug BUILD_ENV
+        run: |
+          echo "$(ls -l)"
+          echo "BUILD_ENV=${{ github.ref }}"
       - name: Checkout code
         uses: actions/checkout@v2
 

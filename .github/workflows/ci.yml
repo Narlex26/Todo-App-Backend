@@ -25,14 +25,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test -- --watch=false
-
       - name: Set up .env file
         run: |
           echo "Generating .env file for ${{ github.ref_name }} environment"
 
-          if [["${{ github.ref_name }}" == "main" ]]; then
+          if [ "${{ github.ref_name }}" == "main" ]; then
             echo "NODE_ENV=production" >> .env
             echo "API_KEY_PROUCTION=${{ secrets.API_KEY_PRODUCTION }}" >> .env
             echo "DB_HOST_PRODUCTION=${{ secrets.DB_HOST_PRODUCTION }}" >> .env
@@ -40,17 +37,22 @@ jobs:
             echo "DB_PASSWORD_PRODUCTION=${{ secrets.DB_PASSWORD_PRODUCTION }}" >> .env
             echo "DB_USER_PRODUCTION=${{ secrets.DB_USER_PRODUCTION }}" >> .env
 
-          elif [["${{ github.ref_name }}" == "staging" ]]; then
+          elif [ "${{ github.ref_name }}" == "staging" ]; then
             echo "NODE_ENV=staging" >> .env
-            echo "API_KEY_STAGING=36f1871726deab18e6c8261a15351637ac481b714f7f97bff660e13351c3ded9" >> .env
-            echo "DB_HOST_STAGING=212.83.131.87:3306" >> .env
-            echo "DB_NAME_STAGING=todo_app_db" >> .env
-            echo "DB_PASSWORD_STAGING=root" >> .env
-            echo "DB_USER_STAGING=root" >> .env
+            echo "API_KEY=36f1871726deab18e6c8261a15351637ac481b714f7f97bff660e13351c3ded9" >> .env
+            echo "ALLOWED_ORIGINS=http://212.83.131.87,http://212.83.131.87:80" >> .env
+            echo "DB_HOST=212.83.131.87" >> .env
+            echo "DB_PORT=3306" >> .env
+            echo "DB_NAME=todo_app_db" >> .env
+            echo "DB_PASSWORD=root" >> .env
+            echo "DB_USER=root" >> .env
 
           else
             echo "NODE_ENV=development" >> .env
           fi
+
+      - name: Run tests
+        run: npm test -- --watch=false
 
       - name: Log in to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
