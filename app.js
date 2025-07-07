@@ -6,7 +6,7 @@ const logger = require('morgan');
 const createError = require('http-errors');
 require('dotenv').config();
 
-// Routers
+// Router
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 
