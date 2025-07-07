@@ -40,7 +40,7 @@ jobs:
           elif [ "${{ github.ref_name }}" == "staging" ]; then
             echo "NODE_ENV=staging" >> .env
             echo "API_KEY=36f1871726deab18e6c8261a15351637ac481b714f7f97bff660e13351c3ded9" >> .env
-            echo "ALLOWED_ORIGINS=http://212.83.131.87,http://212.83.131.87:80,http://212.83.131.87/api/users" >> .env
+            echo "ALLOWED_ORIGINS=http://212.83.131.87,http://212.83.131.87:80" >> .env
             echo "DB_HOST=212.83.131.87" >> .env
             echo "DB_PORT=3306" >> .env
             echo "DB_NAME=todo_app_db" >> .env

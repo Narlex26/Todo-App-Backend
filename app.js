@@ -24,7 +24,7 @@ const corsOptions = {
       : ['http://212.83.131.87','http://212.83.131.87:80'];
 
     // Permettre les requêtes sans origine en développement
-    if (process.env.NODE_ENV === 'development') {
+    if (!origin) {
       return callback(null, true);
     }
 
