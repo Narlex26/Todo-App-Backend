@@ -31,6 +31,7 @@ const corsOptions = {
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
+      console.log(`CORS: Origine refusée - ${origin}`);
       callback(new Error('Non autorisé par CORS'));
     }
   },
