@@ -1,5 +1,6 @@
 FROM node:22
 
+
 # Étape 2 : définir le dossier de travail dans le conteneur
 WORKDIR  /var/www/html/app
 
